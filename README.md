@@ -8,7 +8,7 @@
 |---|---|---|
 | [New Park Street Pulpit](#new-park-street-pulpit--vols-16) | Vols. 1–6 · sermons preached 1855–1860 | ✅ Complete |
 | [Metropolitan Tabernacle Pulpit](#metropolitan-tabernacle-pulpit--vols-763) | Vols. 7–63 · 1861–1917 | ✅ Complete |
-| [The Sword and the Trowel](#the-sword-and-the-trowel--18651892) | Annual volumes 1865–1892 | 🔨 JSON build in progress |
+| [The Sword and the Trowel](#the-sword-and-the-trowel--18651892) | Annual volumes 1865–1892 | 28 files · 6,479 articles |
 
 **Pulpit totals: 63 volumes · 3,561 sermon records covering every published number,
 No. 1 to No. 3,563 · 24,795,244 words.** All underlying works are public domain.
@@ -33,7 +33,7 @@ tagging protocol across the set: [TAGGING.md](TAGGING.md) ·
 │   └── METADATA_PROTOCOL.md        Field-by-field schema/protocol (schema 1.1)
 ├── new-park-street-pulpit/         6 JSON files, one per volume (Vols. 1–6)
 ├── metropolitan-tabernacle-pulpit/ 57 JSON files, one per volume (Vols. 7–63)
-└── sword-and-the-trowel/           Section README for now; annual-volume JSONs land here
+└── sword-and-the-trowel/           The Sword and the Trowel, 1865–1892 (28 annual-volume JSONs)
 ```
 
 ## Quick start
@@ -151,12 +151,14 @@ in [BUILD_NOTES.md](BUILD_NOTES.md).
 ## The Sword and the Trowel — 1865–1892
 
 Spurgeon's monthly magazine, edited by him from its founding in 1865 until his death
-in January 1892. All 28 annual volumes of his era have been sourced and verified
-(public-domain scans via Theology on the Web, cross-checked against Internet Archive
-copies) and the JSON build — one file per annual volume, split to individual
-articles with authors as printed — is in progress. The JSONs will land in
-[sword-and-the-trowel/](sword-and-the-trowel/). See that folder's README for the
-sourcing status in the meantime.
+in January 1892. All 28 annual volumes of his era are here — one JSON file per
+annual volume, split to individual articles with authors as printed: **6,479
+article records, 10,824,332 words**, tagged with the same schema-1.1 methodology
+as the Pulpit set. Sources: public-domain scans via Theology on the Web,
+cross-checked against Internet Archive copies for 1866, 1867, 1882 and 1889.
+The files live in [sword-and-the-trowel/](sword-and-the-trowel/); see that
+folder's README for method, exclusions, per-year counts and the documented
+defects (index anchoring thins toward 1892, its weakest volume).
 
 ## Citation
 
