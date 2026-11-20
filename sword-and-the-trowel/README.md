@@ -184,6 +184,97 @@ the defects below.
 - Post-1892 volumes (1893–1904) exist at the same source but are
   outside the Spurgeon era and outside this set.
 
+## Harper pass (2026-11-10)
+
+A spelling-correction pass was run over all 28 volumes with Harper
+(harper-cli 3.1.0, GB dialect, SpellCheck only). Harper only flagged;
+it never fixed. Every applied correction was individually adjudicated
+and proven — against the page image of that year's source PDF, or as
+an unambiguous non-word whose correction is forced by context across
+multiple occurrences. Period spellings, punctuation, and
+capitalization stand as printed. The pre-pass JSONs are preserved in
+the build folder (`harper/pre-harper-backup/`), and the corrections
+were applied through a patch script with per-family count assertions,
+so the pass is reproducible from the backup.
+
+**Method.** Harper produced 977,329 flags over 282,062 distinct
+tokens. Flags were grouped by token and adjudicated once per token:
+period forms, real words, proper names, quoted dialect, and verse
+forms were whitelisted (one cumulative whitelist, seeded from the
+John Leland 1845 pass); proven garbles were fixed; split-word
+fragments, unprovable names, and ambiguous tokens were left as
+printed and are documented below. Fixes were applied in four
+families: whole-token replacements (3,595 distinct tokens decided),
+intra-word period chains (e.g. `a.nd` → and; 1,250 forms), the
+list-typeface title family (initial M misread as "ll": `lllr.` → Mr.,
+`lllrs.` → Mrs., `llliss` → Miss — proven on the 1892 printed p. 47),
+and split-word rejoins (125 joins). Eleven article-title tokens were
+also corrected, each proven against that year's printed index or the
+article's printed headline (e.g. 1882 "The Humiliation of Christ").
+
+**Results.** 42,769 corrections applied to the article texts (and the
+same again in each volume's `full_text`, which mirrors them): 25,561
+dotted-chain, 12,435 whole-token, 4,643 title-family, 130 split
+rejoins, plus the 11 title-field fixes. Article word count moved
+10,824,332 → 10,824,213 (−119, the net of split rejoins against the
+"of the" chain split). Article counts, segmentation, month
+boundaries, and the tagging arrays are unchanged (6,479 articles;
+3,906 cross-references; 34,013 proper nouns — no tagged token was
+touched by a text fix). Spot verification re-rendered source pages
+across six years (1865 sympathy; 1873 intellectual; 1880 various;
+1885 enough; 1889 remain; 1892 between) — every sampled fix matches
+print exactly.
+
+| Year | Harper flags | Whitelist-disposed | Fixes applied |
+|------|-------------:|-------------------:|--------------:|
+| 1865 | 23,376 | 47.8% | 699 |
+| 1866 | 24,551 | 47.9% | 889 |
+| 1867 | 30,161 | 51.5% | 1,059 |
+| 1868 | 41,718 | 50.2% | 1,671 |
+| 1869 | 30,015 | 51.0% | 1,050 |
+| 1870 | 36,047 | 49.8% | 1,352 |
+| 1871 | 32,719 | 48.7% | 1,331 |
+| 1872 | 32,193 | 51.1% | 1,112 |
+| 1873 | 27,427 | 56.9% | 968 |
+| 1874 | 28,637 | 58.2% | 1,088 |
+| 1875 | 26,498 | 57.8% | 1,046 |
+| 1876 | 29,670 | 54.9% | 1,458 |
+| 1877 | 25,785 | 60.4% | 1,105 |
+| 1878 | 30,328 | 58.0% | 1,013 |
+| 1879 | 36,045 | 62.2% | 1,562 |
+| 1880 | 32,419 | 67.1% | 1,024 |
+| 1881 | 35,996 | 62.5% | 1,430 |
+| 1882 | 32,603 | 67.7% | 1,529 |
+| 1883 | 41,002 | 61.9% | 2,512 |
+| 1884 | 34,121 | 67.1% | 1,415 |
+| 1885 | 37,329 | 67.4% | 1,658 |
+| 1886 | 44,813 | 64.6% | 2,238 |
+| 1887 | 37,361 | 69.1% | 1,883 |
+| 1888 | 53,991 | 61.0% | 3,000 |
+| 1889 | 37,857 | 69.0% | 2,057 |
+| 1890 | 38,185 | 70.7% | 2,034 |
+| 1891 | 40,201 | 67.9% | 1,700 |
+| 1892 | 56,281 | 66.8% | 2,886 |
+| **Total** | **977,329** | **60.4%** | **42,769** |
+
+**Documented remainder** (left as printed, deliberately): split-word
+fragments whose other half varies or is lost (the largest class);
+donation-list and £sd-table garbles, where names and figures cannot
+be proven letter-by-letter; display-heading and masthead garbles
+(the Orphanage/College "...gt" headings and similar); unprovable
+personal names (a transparent misprint of a famous name was fixed
+only where context forced it, e.g. l'aylor → Taylor in a narrative);
+quoted dialect and letters printed in dialect spellings; Latin and
+other foreign matter; one-off (single-occurrence) garbles that did
+not pass a strict automated gate — a stricter sample-validated gate
+did admit 458 of these, and an earlier, looser gate was rejected
+after its validation sample showed it would have corrupted good
+text (it proposed, among others, changing a convert's name,
+Hemangini, to "hanging"); a handful of apostrophe-form title
+garbles in list matter (e.g. "Illr.", "Jllrs.") that pattern-matching
+could not prove; and real-word errors Harper cannot see, such as
+drop-cap losses (HOSE for THOSE), which are out of this pass's scope.
+
 ## Files
 
 - `sword-and-the-trowel-YYYY.json` — the 28 annual volumes.
